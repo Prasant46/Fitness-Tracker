@@ -17,5 +17,8 @@ export const UserSignUp = async (data) => API.post("/user/signup", data);
 export const UserSignIn = async (data) => API.post("/user/signin", data);
 
 export const getDashboardDetails = async () => API.get("/user/dashboard");
-export const getWorkouts = async (date = "") => API.get(`/user/workout${date}`);
-export const addWorkout = async (data) => API.post("/user/workout", data);
+
+export const getWorkouts = async (date = "") =>
+  await API.get(`/user/workout${date}`);
+
+export const addWorkout = async (data) => await API.post(`/user/workout`, data);

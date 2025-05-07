@@ -56,15 +56,6 @@ const Details = styled.div`
   gap: 6px;
 `;
 
-const BodyweightBadge = styled.span`
-  font-size: 12px;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.secondary};
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-left: 4px;
-`;
-
 const WorkoutCard = ({ workout }) => {
   return (
     <Card>
@@ -76,14 +67,7 @@ const WorkoutCard = ({ workout }) => {
       <Flex>
         <Details>
           <FitnessCenterRounded sx={{ fontSize: "20px" }} />
-          {workout?.weight === 0 ? (
-            <>
-              Bodyweight
-              <BodyweightBadge>BW</BodyweightBadge>
-            </>
-          ) : (
-            `${workout?.weight} kg`
-          )}
+          {workout?.weight} kg
         </Details>
         <Details>
           <TimelapseRounded sx={{ fontSize: "20px" }} />

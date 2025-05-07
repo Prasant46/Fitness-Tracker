@@ -314,11 +314,7 @@ const parseWorkoutLine = (parts) => {
     details.reps = parseInt(
       parts[2].split("sets")[1].split("reps")[0].substring(1).trim()
     );
-
-    // Handle weight parsing for both regular and bodyweight exercises
-    const weightStr = parts[3].substring(1).trim().toLowerCase();
-    details.weight = weightStr === "bodyweight" ? 0 : parseFloat(weightStr);
-
+    details.weight = parseFloat(parts[3].split("kg")[0].substring(1).trim());
     details.duration = parseFloat(parts[4].split("min")[0].substring(1).trim());
     console.log(details);
     return details;
@@ -329,10 +325,7 @@ const parseWorkoutLine = (parts) => {
 // Function to calculate calories burnt for a workout
 const calculateCaloriesBurnt = (workoutDetails) => {
   const durationInMinutes = parseInt(workoutDetails.duration);
-  const weightInKg = workoutDetails.weight || 0; // Use 0 for bodyweight exercises
-  const baseCaloriesPerMinute = 5; // Base calories burned per minute
-
-  // For bodyweight exercises, use a base multiplier
-  const multiplier = weightInKg > 0 ? weightInKg : 1;
-  return durationInMinutes * baseCaloriesPerMinute * multiplier;
+  const weightInKg = parseInt(workoutDetails.weight);
+  const caloriesBurntPerMinute = 5; // Sample value, actual calculation may vary
+  return durationInMinutes * caloriesBurntPerMinute * weightInKg;
 };
