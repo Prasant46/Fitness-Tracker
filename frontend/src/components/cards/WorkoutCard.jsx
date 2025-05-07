@@ -17,6 +17,7 @@ const Card = styled.div`
     padding: 12px 14px;
   }
 `;
+
 const Category = styled.div`
   width: fit-content;
   font-size: 14px;
@@ -26,11 +27,13 @@ const Category = styled.div`
   padding: 4px 10px;
   border-radius: 8px;
 `;
+
 const Name = styled.div`
   font-size: 20px;
   color: ${({ theme }) => theme.text_primary};
   font-weight: 600;
 `;
+
 const Sets = styled.div`
   font-size: 15px;
   color: ${({ theme }) => theme.text_secondary};
@@ -38,10 +41,12 @@ const Sets = styled.div`
   display: flex;
   gap: 6px;
 `;
+
 const Flex = styled.div`
   display: flex;
   gap: 16px;
 `;
+
 const Details = styled.div`
   font-size: 15px;
   color: ${({ theme }) => theme.text_primary};
@@ -49,6 +54,15 @@ const Details = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
+`;
+
+const BodyweightBadge = styled.span`
+  font-size: 12px;
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.secondary};
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 4px;
 `;
 
 const WorkoutCard = ({ workout }) => {
@@ -62,7 +76,14 @@ const WorkoutCard = ({ workout }) => {
       <Flex>
         <Details>
           <FitnessCenterRounded sx={{ fontSize: "20px" }} />
-          {workout?.weight} kg
+          {workout?.weight === 0 ? (
+            <>
+              Bodyweight
+              <BodyweightBadge>BW</BodyweightBadge>
+            </>
+          ) : (
+            `${workout?.weight} kg`
+          )}
         </Details>
         <Details>
           <TimelapseRounded sx={{ fontSize: "20px" }} />
